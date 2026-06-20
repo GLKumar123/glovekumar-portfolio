@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Kumar | Senior SRE & DevOps Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#050816;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    .container{
+      width:90%;
+      max-width:1250px;
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:999;
+      backdrop-filter:blur(12px);
+      background:rgba(5,8,22,0.75);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-wrapper{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+      color:#00ffb3;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#cbd5e1;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    .nav-links a:hover{
+      color:#00ffb3;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      background:
+      radial-gradient(circle at top left,#0f172a 0%,transparent 35%),
+      radial-gradient(circle at bottom right,#064e3b 0%,transparent 35%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero-text h1{
+      font-size:72px;
+      line-height:1.1;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .hero-text h1 span{
+      color:#00ffb3;
+    }
+
+    .hero-text p{
+      color:#94a3b8;
+      font-size:19px;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#00ffb3;
+      color:#000;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-5px);
+    }
+
+    .btn-outline{
+      border:1px solid #00ffb3;
+      color:#00ffb3;
+    }
+
+    .btn-outline:hover{
+      background:#00ffb3;
+      color:#000;
+    }
+
+    /* TERMINAL */
+
+    .terminal-box{
+      background:#0f172a;
+      border-radius:20px;
+      padding:25px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .terminal-header{
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+    }
+
+    .red{background:#ff5f56;}
+    .yellow{background:#ffbd2e;}
+    .green{background:#27c93f;}
+
+    .terminal{
+      font-family:monospace;
+      color:#00ffb3;
+      line-height:1.9;
+      font-size:15px;
+      overflow:auto;
+    }
+
+    section{
+      padding:110px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:46px;
+      margin-bottom:70px;
+      font-weight:800;
+    }
+
+    .section-title span{
+      color:#00ffb3;
+    }
+
+    /* CARDS */
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#0f172a;
+      padding:35px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:#00ffb3;
+    }
+
+    .card h3{
+      color:#00ffb3;
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .card p{
+      color:#94a3b8;
+      line-height:1.8;
+    }
+
+    /* SKILLS */
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+    }
+
+    .skill{
+      background:#0f172a;
+      padding:18px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.06);
+      text-align:center;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .skill:hover{
+      background:#00ffb3;
+      color:#000;
+      transform:scale(1.05);
+    }
+
+    /* EXPERIENCE */
+
+    .timeline{
+      border-left:2px solid #00ffb3;
+      padding-left:35px;
+    }
+
+    .timeline-item{
+      margin-bottom:45px;
+      position:relative;
+    }
+
+    .timeline-item::before{
+      content:'';
+      width:16px;
+      height:16px;
+      background:#00ffb3;
+      border-radius:50%;
+      position:absolute;
+      left:-44px;
+      top:8px;
+    }
+
+    .timeline-item h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+
+    .timeline-item h4{
+      color:#00ffb3;
+      margin-bottom:12px;
+    }
+
+    .timeline-item p{
+      color:#94a3b8;
+      line-height:1.8;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      text-align:center;
+      background:#0f172a;
+      padding:60px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .contact-box p{
+      color:#94a3b8;
+      margin-bottom:15px;
+      font-size:18px;
+    }
+
+    footer{
+      text-align:center;
+      padding:35px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      color:#64748b;
+    }
+
+    @media(max-width:900px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text h1{
+        font-size:48px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-wrapper">
+
+    <div class="logo">G Love Kumar</div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div class="hero-text">
+
+      <h1>
+        Senior <span>SRE</span> &
+        DevOps Engineer
+      </h1>
+
+      <p>
+        9.7+ years building scalable cloud infrastructure,
+        Kubernetes platforms, CI/CD automation, observability systems,
+        production reliability engineering, and enterprise-grade
+        SRE and DevOps solutions across multi-cloud environments.
+      </p>
+
+      <div class="hero-buttons">
+
+      <a href="http://glovekumarcloud.com/Updated_cv_GLoveKumar.pdf" download class="btn btn-primary">
+  Download Resume
+      </a>
+        <a href="#contact" class="btn btn-outline">
+          Hire Me
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="terminal-box">
+
+      <div class="terminal-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+
+      <div class="terminal">
+
+Infrastructure deployed successfully
+
+$ uptime
+
+99.99% availability
+
+with secure connection
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="about">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      About <span>Me</span>
+    </h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Kubernetes & Cloud</h3>
+
+        <p>
+          Extensive experience managing production Kubernetes clusters,
+          Cloud infrastructure, K8s platforms, networking,
+          ingress, Helm deployments, Vault integration,
+          and scalable distributed systems.
+        </p>
+      </div>
+
+      <div class="card">
+
+        <h3>DevOps Automation</h3>
+
+        <p>
+          Strong expertise in Jenkins, Terraform, ArgoCD,
+          CI/CD pipelines, GitOps workflows, Infrastructure as Code,
+          automated deployments, and cloud-native platform engineering.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Reliability Engineering</h3>
+
+        <p>
+          Specialized in monitoring, observability, incident management,
+          production troubleshooting, RCA analysis, health monitoring,
+          and improving system reliability across enterprise workloads.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="skills">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Technical <span>Stack</span>
+    </h2>
+
+    <div class="skills-grid">
+
+      <div class="skill">Kubernetes</div>
+      <div class="skill">Docker</div>
+      <div class="skill">AWS</div>
+      <div class="skill">GCP</div>
+      <div class="skill">Terraform</div>
+      <div class="skill">Vault</div>
+      <div class="skill">Helm</div>
+      <div class="skill">ArgoCD</div>
+      <div class="skill">Jenkins</div>
+      <div class="skill">Prometheus</div>
+      <div class="skill">Grafana</div>
+      <div class="skill">VictoriaMetrics</div>
+      <div class="skill">OpenSearch</div>
+      <div class="skill">Python</div>
+      <div class="skill">Bash</div>
+      <div class="skill">Ansible</div>
+      <div class="skill">Nginx</div>
+      <div class="skill">Kong</div>
+      <div class="skill">Route53</div>
+      <div class="skill">Load Balancer</div>
+      <div class="skill">Oauth2</div>
+      <div class="skill">SSO</div>
+      <div class="skill">Jaeger</div>
+      <div class="skill">ELK Stack</div>
+      <div class="skill">Exporters</div>
+      <div class="skill">GKE</div>
+      <div class="skill">CloudWatch</div>
+      <div class="skill">Linux</div>
+      <div class="skill">Kafka</div>
+      <div class="skill">PostgreSQL</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="experience">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Professional <span>Experience</span>
+    </h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+
+        <h3>Zeta</h3>
+        <h4>Senior DevOps Engineer / SRE • 2020 - 2025</h4>
+
+        <p>
+          Managed enterprise Kubernetes infrastructure,
+          Vault integrations, Terraform-based cloud provisioning,
+          Jenkins CI/CD pipelines, Prometheus monitoring,
+          ArgoCD deployments, GitOps workflows,
+          and large-scale production reliability operations.
+        </p>
+
+      </div>
+
+      <div class="timeline-item">
+
+        <h3>Tavant Technologies</h3>
+        <h4>DevOps Engineer • 2015 - 2020</h4>
+
+        <p>
+          Automated infrastructure operations using Jenkins,
+          Ansible, shell scripting, Git workflows,
+          Sonar integrations, Linux administration,
+          FTP services, backup management, and deployment automation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="projects">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Featured <span>Projects</span>
+    </h2>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <h3>Gitea Platform Lifecycle</h3>
+
+        <p>
+          Built and automated complete Gitea service lifecycle
+          using Kubernetes, Jenkins, ArgoCD, Helm, K8s Platform,
+          PostgreSQL migration, SSL/TLS setup,
+          and enterprise repository management automation.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Docker Hub Migration to Container Image Registry</h3>
+
+        <p>
+          Designed centralized image registry architecture
+          to overcome Docker Hub rate limitations,
+          integrated cross-account k8s platform access
+          and automated image migration pipelines using Jenkins.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="contact-box">
+
+      <h2 class="section-title">
+        Let's <span>Connect</span>
+      </h2>
+
+      <p>📍 Bengaluru, India</p>
+      <p>📧 glkumarsre@gmail.com</p>
+      <p>📱 +91 9441602245</p>
+      <p>💼 LinkedIn: love-kumar-gubbala-528770377</p>
+      <br>
+
+      <a href="mailto:glkumarsre@gmail.com" class="btn btn-primary">
+        Contact Me
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+<img src="https://api.visitorbadge.io/api/visitors?path=glovekumarcloud.com"/>
+<footer>
+  © 2026 Love Kumar • Senior SRE & DevOps Engineer
+</footer>
+
+</body>
+</html>

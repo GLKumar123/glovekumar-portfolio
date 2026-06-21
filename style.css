@@ -5,18 +5,16 @@
   text-align:center;
 }
 
-.architecture-subtitle{
+.pipeline-wrapper{
 
-  color:#999;
+  position:relative;
 
-  margin-bottom:30px;
+  width:320px;
+
+  margin:auto;
 }
 
 .pipeline{
-
-  width:300px;
-
-  margin:auto;
 
   display:flex;
 
@@ -37,22 +35,22 @@
 
   background:#101827;
 
-  color:white;
+  color:#fff;
 
   font-weight:600;
 
   border:1px solid #293548;
 
-  box-shadow:0 0 10px rgba(0,212,255,.15);
+  z-index:2;
 }
 
 .connector{
 
   width:4px;
 
-  height:45px;
+  height:40px;
 
-  background:#1e293b;
+  background:#334155;
 
   position:relative;
 
@@ -65,9 +63,9 @@
 
   position:absolute;
 
-  width:12px;
+  width:10px;
 
-  height:12px;
+  height:10px;
 
   left:50%;
 
@@ -77,34 +75,83 @@
 
   background:#00d4ff;
 
-  box-shadow:
+  animation:flow 1.3s infinite linear;
+}
 
-  0 0 8px #00d4ff,
+.cross-link{
 
-  0 0 15px #00d4ff;
+  position:absolute;
 
-  animation:flow 1.5s infinite linear;
+  top:185px;
+
+  left:155px;
+
+  width:170px;
+
+  height:145px;
+
+  border-top:3px solid #00d4ff;
+
+  border-right:3px solid #00d4ff;
+
+  border-radius:0 18px 0 0;
+
+  animation:pulse 1.5s infinite;
+}
+
+.cross-link::before{
+
+  content:"◄";
+
+  position:absolute;
+
+  top:-14px;
+
+  left:-10px;
+
+  font-size:22px;
+
+  color:#00d4ff;
 }
 
 @keyframes flow{
 
   0%{
 
-    top:-12px;
+    top:-10px;
 
     opacity:0;
   }
 
-  20%{
+  30%{
 
     opacity:1;
   }
 
   100%{
 
-    top:45px;
+    top:40px;
 
     opacity:0;
+  }
+
+}
+
+@keyframes pulse{
+
+  0%{
+
+    opacity:.4;
+  }
+
+  50%{
+
+    opacity:1;
+  }
+
+  100%{
+
+    opacity:.4;
   }
 
 }

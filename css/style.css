@@ -174,8 +174,7 @@
 
 /* ==========================
    ECR -> BITBUCKET LOOP
-========================== */
-
+========================== 
 .feedback-loop {
 
   position: absolute;
@@ -197,10 +196,10 @@
   animation: pulse 1.6s infinite;
 }
 
-
+*/
 
 /* ARROW */
-
+/*
 .feedback-loop::before {
 
   content: "◄";
@@ -217,9 +216,8 @@
 }
 
 
-
 /* BLINK */
-
+/*
 @keyframes pulse {
 
   0% {
@@ -244,7 +242,7 @@
 /* ==========================
    MOBILE
 ========================== */
-
+/*
 @media (max-width: 900px) {
 
   .pipeline-wrapper {
@@ -267,3 +265,4 @@
   }
 
 }
+*/

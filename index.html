@@ -328,7 +328,11 @@
 </head>
 
 <body>
+<button id="theme-toggle">
 
+  🌙 Dark
+
+</button>
 <nav>
   <div class="container nav-wrapper">
 
@@ -846,6 +850,96 @@ ECR + Helm Charts
 <footer>
   © 2026 Love Kumar • Senior SRE & DevOps Engineer
 </footer>
+<script>
 
+const button = document.getElementById('theme-toggle');
+
+button.addEventListener('click',()=>{
+
+document.body.classList.toggle('light-mode');
+
+
+if(document.body.classList.contains('light-mode')){
+
+button.innerHTML='☀️ Light';
+
+}
+
+else{
+
+button.innerHTML='🌙 Dark';
+
+}
+
+});
+
+</script>
+<style>
+  /* Default Dark */
+
+body{
+
+background:#0b1120;
+
+color:white;
+
+transition:.4s;
+}
+
+
+
+/* Light Mode */
+
+body.light-mode{
+
+background:#ffffff;
+
+color:#111827;
+}
+
+
+
+/* Toggle Button */
+
+#theme-toggle{
+
+position:fixed;
+
+top:20px;
+
+right:30px;
+
+padding:12px 18px;
+
+font-size:16px;
+
+font-weight:600;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+background:#00d4ff;
+
+color:#111827;
+
+transition:.3s;
+
+z-index:9999;
+}
+
+
+
+#theme-toggle:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+
+0 0 12px #00d4ff;
+}
+</style>
 </body>
 </html>

@@ -595,35 +595,128 @@ Available for opportunities
 </section>
 <section id="architecture">
 
-  <h2 class="section-title">
+<h2 class="section-title">
 
-    🔀 CI/CD Architecture
+🔀 Architecture Diagrams
 
-  </h2>
+</h2>
 
-  <div class="pipeline-wrapper">
 
-    <div class="step">Bitbucket</div>
+<div class="architecture-grid">
 
-    <div class="connector"></div>
 
-    <div class="step">Jenkins</div>
+<!-- Terraform -->
 
-    <div class="connector"></div>
+<div class="architecture-card">
 
-    <div class="step">ECR + Helm Charts</div>
+<h3>🏗️ Terraform Flow</h3>
 
-    <div class="connector"></div>
+<div class="live-flow">
 
-    <div class="step">ArgoCD</div>
+<div class="box">Bitbucket</div>
 
-    <div class="connector"></div>
+<div class="line"></div>
 
-    <div class="step">EKS</div>
+<div class="box">Jenkins (Terraform)</div>
 
-    <div class="feedback-loop"></div>
+<div class="line"></div>
 
-  </div>
+<div class="box">Terraform</div>
+
+<div class="line"></div>
+
+<div class="box">VPC • EKS • ECR • S3</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Monitoring -->
+
+<div class="architecture-card">
+
+<h3>📈 Monitoring Stack</h3>
+
+<div class="live-flow">
+
+<div class="box">Applications</div>
+
+<div class="line"></div>
+
+<div class="box">Metrics + Tracing + Logs</div>
+
+<div class="line"></div>
+
+<div class="box">
+
+Prometheus + VictoriaMetrics
+
+<br>
+
+Jaeger + OpenSearch
+
+</div>
+
+<div class="line"></div>
+
+<div class="box">Grafana</div>
+
+<div class="line"></div>
+
+<div class="box">Alertmanager</div>
+
+<div class="line"></div>
+
+<div class="box">
+
+Flock + Email + Opsgenie
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CICD -->
+
+<div class="architecture-card">
+
+<h3>🚀 CI/CD Architecture</h3>
+
+<div class="live-flow">
+
+<div class="box">Bitbucket</div>
+
+<div class="line"></div>
+
+<div class="box">Jenkins</div>
+
+<div class="line"></div>
+
+<div class="box">
+
+ECR + Helm Charts
+
+</div>
+
+<div class="line"></div>
+
+<div class="box">ArgoCD</div>
+
+<div class="line"></div>
+
+<div class="box">EKS</div>
+
+</div>
+
+</div>
+
+
+</div>
 
 </section>
 <section id="certifications">

@@ -1,124 +1,138 @@
-#architecture{
+/* ==========================
+   CI/CD Architecture
+========================== */
 
-  padding:80px 20px;
+#architecture {
 
-  text-align:center;
+  padding: 80px 20px;
+
+  text-align: center;
+
+  overflow: hidden;
 }
 
 
-.section-title{
+/* TITLE */
 
-  font-size:48px;
+.section-title {
 
-  font-weight:700;
+  font-size: 48px;
 
-  margin-bottom:60px;
+  font-weight: 700;
+
+  margin-bottom: 60px;
 }
 
 
-.pipeline-wrapper{
 
-  position:relative;
+/* MAIN CONTAINER */
 
-  width:800px;
+.pipeline-wrapper {
 
-  margin:auto;
+  position: relative;
 
-  display:flex;
+  width: 900px;
 
-  flex-direction:column;
+  margin: 0 auto;
 
-  align-items:center;
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
 }
+
 
 
 /* BOX */
 
-.step{
+.step {
 
-  width:420px;
+  width: 420px;
 
-  height:90px;
+  height: 90px;
 
-  display:flex;
+  display: flex;
 
-  justify-content:center;
+  justify-content: center;
 
-  align-items:center;
+  align-items: center;
 
-  background:#0f1b2d;
+  background: #0d1728;
 
-  color:#fff;
+  color: #ffffff;
 
-  font-size:32px;
+  font-size: 32px;
 
-  font-weight:700;
+  font-weight: 700;
 
-  border-radius:20px;
+  border-radius: 20px;
 
-  border:1px solid #233248;
+  border: 1px solid #223248;
 
-  margin:10px 0;
+  transition: all .3s ease;
 
-  transition:.3s;
+  z-index: 10;
 
-  z-index:2;
-
-  cursor:pointer;
+  cursor: pointer;
 }
 
 
-.step:hover{
 
-  transform:translateY(-5px);
+/* HOVER */
 
-  border-color:#00d4ff;
+.step:hover {
+
+  transform: translateY(-5px);
+
+  border-color: #00d4ff;
 
   box-shadow:
 
-  0 0 10px #00d4ff,
+  0 0 12px #00d4ff,
 
-  0 0 25px #00d4ff;
+  0 0 28px rgba(0,212,255,.4);
+
 }
 
 
 
 /* VERTICAL LINE */
 
-.connector{
+.connector {
 
-  width:5px;
+  width: 5px;
 
-  height:50px;
+  height: 55px;
 
-  background:#233248;
+  background: #324255;
 
-  position:relative;
+  position: relative;
 
-  overflow:hidden;
+  overflow: hidden;
 }
 
 
 
 /* MOVING DOT */
 
-.connector::before{
+.connector::before {
 
-  content:"";
+  content: "";
 
-  position:absolute;
+  position: absolute;
 
-  width:12px;
+  width: 12px;
 
-  height:12px;
+  height: 12px;
 
-  left:50%;
+  left: 50%;
 
-  transform:translateX(-50%);
+  transform: translateX(-50%);
 
-  border-radius:50%;
+  border-radius: 50%;
 
-  background:#00d4ff;
+  background: #00d4ff;
 
   box-shadow:
 
@@ -126,95 +140,130 @@
 
   0 0 20px #00d4ff;
 
-  animation:flow 1.3s infinite linear;
+  animation: flow 1.4s infinite linear;
 }
 
 
 
-@keyframes flow{
+/* FLOW */
 
-  0%{
+@keyframes flow {
 
-    top:-12px;
+  0% {
 
-    opacity:0;
+    top: -12px;
+
+    opacity: 0;
   }
 
-  20%{
+  20% {
 
-    opacity:1;
+    opacity: 1;
   }
 
-  100%{
+  100% {
 
-    top:50px;
+    top: 55px;
 
-    opacity:0;
+    opacity: 0;
   }
 
 }
 
 
 
-/* ECR → BITBUCKET FEEDBACK LOOP */
+/* ==========================
+   ECR -> BITBUCKET LOOP
+========================== */
 
-.feedback-loop{
+.feedback-loop {
 
-  position:absolute;
+  position: absolute;
 
-  right:20px;
+  top: 245px;
 
-  top:270px;
+  left: 625px;
 
-  width:250px;
+  width: 220px;
 
-  height:320px;
+  height: 250px;
 
-  border-right:5px solid #00d4ff;
+  border-right: 5px solid #00d4ff;
 
-  border-top:5px solid #00d4ff;
+  border-top: 5px solid #00d4ff;
 
-  border-radius:0 30px 0 0;
+  border-radius: 0 30px 0 0;
 
-  animation:pulse 1.5s infinite;
+  animation: pulse 1.6s infinite;
 }
 
 
 
-/* ARROW HEAD */
+/* ARROW */
 
-.feedback-loop::before{
+.feedback-loop::before {
 
-  content:"◄";
+  content: "◄";
 
-  position:absolute;
+  position: absolute;
 
-  top:-23px;
+  top: -22px;
 
-  left:-14px;
+  left: -16px;
 
-  font-size:34px;
+  font-size: 34px;
 
-  color:#00d4ff;
+  color: #00d4ff;
 }
 
 
 
-@keyframes pulse{
+/* BLINK */
 
-  0%{
+@keyframes pulse {
 
-    opacity:.5;
+  0% {
+
+    opacity: .5;
   }
 
-  50%{
+  50% {
 
-    opacity:1;
+    opacity: 1;
   }
 
-  100%{
+  100% {
 
-    opacity:.5;
+    opacity: .5;
+  }
+
+}
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 900px) {
+
+  .pipeline-wrapper {
+
+    width: 100%;
+  }
+
+  .step {
+
+    width: 320px;
+
+    height: 80px;
+
+    font-size: 24px;
+  }
+
+  .feedback-loop {
+
+    display: none;
   }
 
 }

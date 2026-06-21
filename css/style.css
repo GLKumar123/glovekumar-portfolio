@@ -1,268 +1,220 @@
-/* ==========================
-   CI/CD Architecture
-========================== */
+#architecture{
 
-#architecture {
+padding:80px 30px;
 
-  padding: 80px 20px;
-
-  text-align: center;
-
-  overflow: hidden;
-}
-
-
-/* TITLE */
-
-.section-title {
-
-  font-size: 48px;
-
-  font-weight: 700;
-
-  margin-bottom: 60px;
+overflow:hidden;
 }
 
 
 
-/* MAIN CONTAINER */
+.section-title{
 
-.pipeline-wrapper {
+text-align:center;
 
-  position: relative;
+font-size:48px;
 
-  width: 900px;
+margin-bottom:60px;
+}
 
-  margin: 0 auto;
 
-  display: flex;
 
-  flex-direction: column;
+.architecture-grid{
 
-  align-items: center;
+display:grid;
+
+grid-template-columns:
+
+1fr 1fr 1fr;
+
+gap:35px;
+}
+
+
+
+.architecture-card{
+
+background:#0f172a;
+
+border:1px solid #243548;
+
+border-radius:24px;
+
+padding:35px;
+
+transition:.3s;
+}
+
+
+
+.architecture-card:hover{
+
+transform:translateY(-8px);
+
+border-color:#00d4ff;
+
+box-shadow:
+
+0 0 18px #00d4ff,
+
+0 0 30px rgba(0,212,255,.3);
+}
+
+
+
+.architecture-card h3{
+
+text-align:center;
+
+margin-bottom:35px;
+}
+
+
+
+.live-flow{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
 }
 
 
 
 /* BOX */
 
-.step {
+.box{
 
-  width: 420px;
+width:280px;
 
-  height: 90px;
+min-height:75px;
 
-  display: flex;
+padding:18px;
 
-  justify-content: center;
+display:flex;
 
-  align-items: center;
+justify-content:center;
 
-  background: #0d1728;
+align-items:center;
 
-  color: #ffffff;
+text-align:center;
 
-  font-size: 32px;
+font-size:20px;
 
-  font-weight: 700;
+font-weight:600;
 
-  border-radius: 20px;
+color:#fff;
 
-  border: 1px solid #223248;
+background:#101827;
 
-  transition: all .3s ease;
+border:1px solid #243548;
 
-  z-index: 10;
+border-radius:16px;
 
-  cursor: pointer;
+transition:.3s;
+
+cursor:pointer;
+
+z-index:2;
 }
 
 
 
-/* HOVER */
+.box:hover{
 
-.step:hover {
+transform:scale(1.04);
 
-  transform: translateY(-5px);
+border-color:#00d4ff;
 
-  border-color: #00d4ff;
+box-shadow:
 
-  box-shadow:
-
-  0 0 12px #00d4ff,
-
-  0 0 28px rgba(0,212,255,.4);
-
+0 0 15px #00d4ff;
 }
 
 
 
-/* VERTICAL LINE */
+/* LIVE LINE */
 
-.connector {
+.line{
 
-  width: 5px;
+width:5px;
 
-  height: 55px;
+height:55px;
 
-  background: #324255;
+background:#334155;
 
-  position: relative;
+position:relative;
 
-  overflow: hidden;
+overflow:hidden;
 }
 
 
 
 /* MOVING DOT */
 
-.connector::before {
+.line::before{
 
-  content: "";
+content:"";
 
-  position: absolute;
+position:absolute;
 
-  width: 12px;
+width:12px;
 
-  height: 12px;
+height:12px;
 
-  left: 50%;
+left:50%;
 
-  transform: translateX(-50%);
+transform:translateX(-50%);
 
-  border-radius: 50%;
+border-radius:50%;
 
-  background: #00d4ff;
+background:#00d4ff;
 
-  box-shadow:
+box-shadow:
 
-  0 0 10px #00d4ff,
+0 0 8px #00d4ff,
 
-  0 0 20px #00d4ff;
+0 0 18px #00d4ff;
 
-  animation: flow 1.4s infinite linear;
+animation:traffic 1.2s infinite linear;
 }
 
 
 
-/* FLOW */
+/* TRAFFIC FLOW */
 
-@keyframes flow {
+@keyframes traffic{
 
-  0% {
+0%{
 
-    top: -12px;
+top:-12px;
 
-    opacity: 0;
-  }
-
-  20% {
-
-    opacity: 1;
-  }
-
-  100% {
-
-    top: 55px;
-
-    opacity: 0;
-  }
-
+opacity:0;
 }
 
+20%{
 
-
-/* ==========================
-   ECR -> BITBUCKET LOOP
-========================== 
-.feedback-loop {
-
-  position: absolute;
-
-  top: 245px;
-
-  left: 625px;
-
-  width: 220px;
-
-  height: 250px;
-
-  border-right: 5px solid #00d4ff;
-
-  border-top: 5px solid #00d4ff;
-
-  border-radius: 0 30px 0 0;
-
-  animation: pulse 1.6s infinite;
+opacity:1;
 }
 
-*/
+100%{
 
-/* ARROW */
-/*
-.feedback-loop::before {
+top:55px;
 
-  content: "◄";
-
-  position: absolute;
-
-  top: -22px;
-
-  left: -16px;
-
-  font-size: 34px;
-
-  color: #00d4ff;
+opacity:0;
 }
-
-
-/* BLINK */
-/*
-@keyframes pulse {
-
-  0% {
-
-    opacity: .5;
-  }
-
-  50% {
-
-    opacity: 1;
-  }
-
-  100% {
-
-    opacity: .5;
-  }
 
 }
 
 
 
-/* ==========================
-   MOBILE
-========================== */
-/*
-@media (max-width: 900px) {
+/* MOBILE */
 
-  .pipeline-wrapper {
+@media(max-width:1400px){
 
-    width: 100%;
-  }
+.architecture-grid{
 
-  .step {
-
-    width: 320px;
-
-    height: 80px;
-
-    font-size: 24px;
-  }
-
-  .feedback-loop {
-
-    display: none;
-  }
+grid-template-columns:1fr;
+}
 
 }
-*/

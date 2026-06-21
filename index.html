@@ -628,6 +628,118 @@ Available for opportunities
   </div>
 
 </section>
+<style>
+#architecture{
+
+  padding:80px 20px;
+
+  text-align:center;
+}
+
+.architecture-subtitle{
+
+  color:#999;
+
+  margin-bottom:30px;
+}
+
+.pipeline{
+
+  width:300px;
+
+  margin:auto;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+}
+
+.step{
+
+  width:240px;
+
+  padding:16px;
+
+  margin:6px 0;
+
+  border-radius:14px;
+
+  background:#101827;
+
+  color:white;
+
+  font-weight:600;
+
+  border:1px solid #293548;
+
+  box-shadow:0 0 10px rgba(0,212,255,.15);
+}
+
+.connector{
+
+  width:4px;
+
+  height:45px;
+
+  background:#1e293b;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.connector::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:12px;
+
+  height:12px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:#00d4ff;
+
+  box-shadow:
+
+  0 0 8px #00d4ff,
+
+  0 0 15px #00d4ff;
+
+  animation:flow 1.5s infinite linear;
+}
+
+@keyframes flow{
+
+  0%{
+
+    top:-12px;
+
+    opacity:0;
+  }
+
+  20%{
+
+    opacity:1;
+  }
+
+  100%{
+
+    top:45px;
+
+    opacity:0;
+  }
+
+}
+</style>
 <section id="certifications">
   <div class="certifications">
   <h2 class="section-title">

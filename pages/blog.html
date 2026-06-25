@@ -83,22 +83,37 @@ AWS • Kubernetes • Terraform • Python • Docker • Linux • AI
 
 <!-- Search -->
 
-<div class="search-box">
+<section class="blog-search">
 
-<i class="fa-solid fa-magnifying-glass"></i>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search blogs...">
 
-<input
+    <p id="searchResult"></p>
 
-type="text"
+</section>
 
-id="searchInput"
+<section class="blog-container">
 
-placeholder="Search Kubernetes, Terraform, AWS, Python..."
+    <div class="blog-card">
+        <h2>Terraform Basics</h2>
+        <p>Learn Terraform from scratch.</p>
+    </div>
 
->
+    <div class="blog-card">
+        <h2>Kubernetes Monitoring</h2>
+        <p>Prometheus and Grafana setup.</p>
+    </div>
 
-</div>
+    <div class="blog-card">
+        <h2>Docker Tutorial</h2>
+        <p>Containerize your application.</p>
+    </div>
 
+</section>
+
+<script src="js/blogsearch.js"></script>
 <!-- Topics -->
 
 <div class="topics">
@@ -507,7 +522,6 @@ DevOps Engineer • Site Reliability Engineer
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<script src="js/blogsearch.js"></script>
 <script src="js/bloganimation.js"></script>
 
 </body>

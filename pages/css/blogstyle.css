@@ -1,3 +1,11 @@
+.profile img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+}
+
 .blog-card{
 
     opacity:0;

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kubernetes Production Troubleshooting Guide | Glove Kumar Cloud</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#333;
+    line-height:1.8;
+}
+
+header{
+    background:#0f172a;
+    color:white;
+    padding:60px 20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+h2{
+    margin-top:50px;
+    color:#0f172a;
+    border-left:6px solid #2563eb;
+    padding-left:12px;
+}
+
+h3{
+    margin-top:25px;
+    color:#1e293b;
+}
+
+p{
+    margin:15px 0;
+}
+
+ul{
+    margin-left:25px;
+}
+
+li{
+    margin:8px 0;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    margin-top:20px;
+}
+
+.toc{
+    background:#eef6ff;
+    padding:25px;
+    border-radius:10px;
+}
+
+.toc li{
+    list-style:none;
+}
+
+.toc a{
+    text-decoration:none;
+    color:#2563eb;
+}
+
+.terminal{
+    background:#0d1117;
+    color:#7CFC00;
+    border-radius:8px;
+    overflow:hidden;
+    margin:20px 0;
+}
+
+.terminal-header{
+    background:#161b22;
+    padding:12px;
+    color:white;
+    font-size:14px;
+}
+
+.terminal pre{
+    padding:20px;
+    overflow:auto;
+}
+
+.workflow{
+    background:#111827;
+    color:#34d399;
+    padding:25px;
+    border-radius:10px;
+    font-family:monospace;
+    white-space:pre-line;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+
+td,th{
+    border:1px solid #ddd;
+    padding:12px;
+}
+
+.highlight{
+    background:#fff8dc;
+    border-left:5px solid orange;
+    padding:20px;
+    margin-top:20px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    margin-top:60px;
+    background:#0f172a;
+    color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<h1>Kubernetes Production Troubleshooting Guide</h1>
+
+<p>
+Production debugging guide covering Kubernetes Pods, Services, DNS,
+Ingress, and Networking with real-world troubleshooting techniques.
+</p>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="toc">
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#pods">1. Troubleshooting Pods</a></li>
+<li><a href="#services">2. Troubleshooting Services</a></li>
+<li><a href="#dns">3. DNS Troubleshooting</a></li>
+<li><a href="#ingress">4. Ingress Troubleshooting</a></li>
+<li><a href="#network">5. Network Troubleshooting</a></li>
+<li><a href="#workflow">6. Production Workflow</a></li>
+<li><a href="#commands">7. Useful Debugging Commands</a></li>
+<li><a href="#best">8. Best Practices</a></li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>Introduction</h2>
+
+<p>
+Production incidents can occur at any time. A structured troubleshooting
+approach helps engineers identify root causes quickly and restore services
+with minimal downtime.
+</p>
+
+</div>
+
+<div class="card" id="pods">
+
+<h2>1. Troubleshooting Pods</h2>
+
+<ul>
+<li>Check Pod Status</li>
+<li>Describe the Pod</li>
+<li>Inspect Logs</li>
+<li>Verify Events</li>
+<li>Check Resource Limits</li>
+<li>Verify Readiness & Liveness Probes</li>
+</ul>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Terminal
+</div>
+
+<pre>
+kubectl get pods -A
+
+kubectl describe pod &lt;pod-name&gt;
+
+kubectl logs &lt;pod-name&gt;
+
+kubectl logs &lt;pod-name&gt; --previous
+
+kubectl top pod
+</pre>
+
+</div>
+
+<div class="highlight">
+
+<b>Common Issues</b>
+
+<ul>
+<li>CrashLoopBackOff</li>
+<li>OOMKilled</li>
+<li>Pending Pods</li>
+<li>ImagePullBackOff</li>
+<li>Readiness Probe Failed</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="card" id="services">
+
+<h2>2. Troubleshooting Services</h2>
+
+<ul>
+
+<li>Verify Service exists</li>
+
+<li>Check Service Endpoints</li>
+
+<li>Verify Labels & Selectors</li>
+
+<li>Confirm TargetPort mapping</li>
+
+</ul>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Terminal
+</div>
+
+<pre>
+kubectl get svc
+
+kubectl describe svc my-service
+
+kubectl get endpoints my-service
+
+kubectl get pods --show-labels
+</pre>
+
+</div>
+
+</div>
+
+<div class="card" id="dns">
+
+<h2>3. DNS Troubleshooting</h2>
+
+<ul>
+
+<li>Verify CoreDNS</li>
+
+<li>Test DNS Resolution</li>
+
+<li>Inspect CoreDNS Logs</li>
+
+<li>Check DNS Policies</li>
+
+</ul>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Terminal
+</div>
+
+<pre>
+kubectl exec -it busybox -- nslookup kubernetes.default
+
+kubectl exec -it busybox -- dig google.com
+
+kubectl get pods -n kube-system
+
+kubectl logs -n kube-system deployment/coredns
+</pre>
+
+</div>
+
+</div>
+
+<div class="card" id="ingress">
+
+<h2>4. Ingress Troubleshooting</h2>
+
+<ul>
+
+<li>Validate Host Rules</li>
+
+<li>Verify TLS Certificate</li>
+
+<li>Check Backend Service</li>
+
+<li>Review Controller Logs</li>
+
+</ul>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Terminal
+</div>
+
+<pre>
+kubectl get ingress
+
+kubectl describe ingress my-app
+
+kubectl logs -n ingress-nginx deployment/ingress-nginx-controller
+</pre>
+
+</div>
+
+</div>
+
+<div class="card" id="network">
+
+<h2>5. Network Troubleshooting</h2>
+
+<ul>
+
+<li>Test Pod-to-Pod Connectivity</li>
+
+<li>Verify Service Connectivity</li>
+
+<li>Inspect Network Policies</li>
+
+<li>Validate CNI Plugin</li>
+
+</ul>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Terminal
+</div>
+
+<pre>
+kubectl exec -it pod1 -- ping pod2
+
+kubectl exec -it pod1 -- curl http://my-service
+
+kubectl get networkpolicy
+
+kubectl get pods -n kube-system
+</pre>
+
+</div>
+
+</div>
+
+<div class="card" id="workflow">
+
+<h2>Production Troubleshooting Workflow</h2>
+
+<div class="workflow">
+
+Application Issue
+       │
+       ▼
+Check Pod Status
+       │
+       ▼
+Inspect Logs
+       │
+       ▼
+Verify Service
+       │
+       ▼
+Check Endpoints
+       │
+       ▼
+Test DNS
+       │
+       ▼
+Validate Ingress
+       │
+       ▼
+Check Network Policy
+       │
+       ▼
+Inspect CNI Plugin
+       │
+       ▼
+Root Cause Identified
+       │
+       ▼
+Apply Fix
+       │
+       ▼
+Validate Recovery
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Common Production Problems</h2>
+
+<table>
+
+<tr>
+
+<th>Component</th>
+
+<th>Typical Issue</th>
+
+<th>Action</th>
+
+</tr>
+
+<tr>
+
+<td>Pod</td>
+
+<td>CrashLoopBackOff</td>
+
+<td>Check logs & events</td>
+
+</tr>
+
+<tr>
+
+<td>Service</td>
+
+<td>No Endpoints</td>
+
+<td>Verify labels</td>
+
+</tr>
+
+<tr>
+
+<td>DNS</td>
+
+<td>Name Resolution Failed</td>
+
+<td>Inspect CoreDNS</td>
+
+</tr>
+
+<tr>
+
+<td>Ingress</td>
+
+<td>HTTP 502/503</td>
+
+<td>Validate backend</td>
+
+</tr>
+
+<tr>
+
+<td>Network</td>
+
+<td>Connection Timeout</td>
+
+<td>Check CNI & Policies</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="card" id="commands">
+
+<h2>Useful Kubernetes Debugging Commands</h2>
+
+<div class="terminal">
+
+<div class="terminal-header">
+Production Kubernetes Cheat Sheet
+</div>
+
+<pre>
+# Cluster
+kubectl cluster-info
+kubectl get nodes -o wide
+kubectl top node
+
+# Pods
+kubectl get pods -A
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+kubectl exec -it <pod-name> -- sh
+kubectl top pod
+
+# Deployments
+kubectl get deploy
+kubectl rollout status deployment/<deployment>
+kubectl rollout history deployment/<deployment>
+kubectl rollout undo deployment/<deployment>
+
+# ReplicaSets
+kubectl get rs
+
+# Services
+kubectl get svc
+kubectl describe svc <service>
+kubectl get endpoints <service>
+
+# DNS
+kubectl exec -it busybox -- nslookup kubernetes.default
+kubectl exec -it busybox -- dig google.com
+kubectl logs -n kube-system deployment/coredns
+
+# Ingress
+kubectl get ingress
+kubectl describe ingress <ingress>
+
+# Networking
+kubectl get networkpolicy
+kubectl get pods -n kube-system
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+# Resources
+kubectl top pod
+kubectl top node
+
+# Events
+kubectl get events -A
+
+# YAML
+kubectl get pod <pod-name> -o yaml
+kubectl get svc <service> -o yaml
+kubectl get ingress <ingress> -o yaml
+</pre>
+
+</div>
+
+</div>
+
+<div class="card" id="best">
+
+<h2>Best Practices</h2>
+
+<ul>
+
+<li>Monitor applications with Prometheus and Grafana.</li>
+
+<li>Configure Liveness and Readiness probes correctly.</li>
+
+<li>Use resource requests and limits.</li>
+
+<li>Centralize logs using OpenSearch, ELK, or Loki.</li>
+
+<li>Create alerting rules for Pod restarts and node health.</li>
+
+<li>Maintain production runbooks.</li>
+
+<li>Practice troubleshooting in staging before production.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Glove Kumar Cloud • Kubernetes • DevOps • SRE
+
+</footer>
+
+</body>
+</html>

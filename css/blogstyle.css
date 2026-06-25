@@ -1,0 +1,65 @@
+.blog-card{
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+    transition:.8s ease;
+
+}
+
+.blog-card.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+header.sticky{
+
+    background:#0f172a;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+nav a.active{
+
+    color:#3b82f6;
+
+}
+
+#topBtn{
+
+    position:fixed;
+
+    bottom:30px;
+
+    right:30px;
+
+    width:55px;
+
+    height:55px;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    z-index:999;
+
+}
